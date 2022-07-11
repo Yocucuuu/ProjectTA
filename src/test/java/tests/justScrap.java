@@ -9,7 +9,16 @@ import java.util.Map;
 
 public class justScrap extends TestBase{
 
+
+
+    /*JUST RUN IT ON IOS*/
     @Test
+    public void testIOS()  throws MalformedURLException {
+        iOS_setUp();
+        System.out.println("Ayam ");
+    }
+
+    @Test(enabled = false)
     public void testName() throws MalformedURLException, InterruptedException {
         Android_Emulator_setUp();
         boolean instaled = driver.isAppInstalled(sejarahKitaPackage);

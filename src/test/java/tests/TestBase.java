@@ -5,7 +5,9 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.AutomationName;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -91,15 +93,15 @@ public class TestBase  {
     }
 
 
-//    public static void iOS_setUp() throws MalformedURLException {
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("platformName", "iOS");
-//        capabilities.setCapability("platformVersion", "14.4");
-//        capabilities.setCapability("deviceName", "iPhone 11 Pro");
-//        capabilities.setCapability("app",
-//                System.getProperty("user.dir") + "/apps/DailyCheck.zip");
-//        driver = new IOSDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
-//    }
+    public static void iOS_setUp() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("automationName", AutomationName.IOS_XCUI_TEST);
+        capabilities.setCapability("platformVersion", "15.1");
+        capabilities.setCapability("deviceName", "asus's Iphone");
+        capabilities.setCapability("app", System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+        driver = new IOSDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
 
     public static void getServerLog() throws IOException {
         Map<String, Object> status = driver.getStatus();
