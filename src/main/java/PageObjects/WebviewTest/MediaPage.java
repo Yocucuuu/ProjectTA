@@ -7,10 +7,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class MediaPage extends PageBase {
 
-    @AndroidFindBy(accessibility = "Show roots")
+    @AndroidFindBy(accessibility = "Tampilkan root")
     MobileElement leftMenuTray;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout")
+//    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout")
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Gambar\")")
     MobileElement imageMenu;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"SharedFolder\")")

@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 
 public class ProfileFragment extends SejarahKita_PageBase {
 
-    String id_btnLogout ="btn_logout_profile_fragment";
+
     public ProfileFragment(AppiumDriver appiumDriver) {
         super(appiumDriver);
     }
@@ -17,7 +17,7 @@ public class ProfileFragment extends SejarahKita_PageBase {
     MobileElement btnLogout ;
 
     @AndroidFindBy(id = "lbl_email_profile_fragment")
-    MobileElement lblEmail;
+    public MobileElement lblEmail;
 
     @AndroidFindBy(id = "btn_playing_history_profile_fragment")
     MobileElement btnHistory;

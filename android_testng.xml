@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Suite" parallel="tests">
-    <test name="Android">
-        <classes>
+<suite name="TUGAS AKHIR" parallel="false" >
+    <test name="Sejarah Kita instalation Test" enabled="false"   >
+        <groups>
             <run>
 
             </run>
+        </groups>
+        <classes>
+            <class name="tests.SejarahKita_Installation_Test"/>
+        </classes>
+    </test>
+    <test name="Sejarah Kita Feature"  enabled="false" >
+        <groups>
+            <run>
+
+                <exclude name="loginFail"/>
+                <exclude name="registerFail"/>
+                <exclude name="registerSuccess"/>
+<!--                <exclude name="cancelPlay"/>-->
+<!--                <exclude name="cekSession"/>-->
+<!--                <exclude name="showLeaderboard"/>-->
+<!--                <exclude name="playGames"/>-->
+            </run>
+        </groups>
+      <classes>
+        <class name="tests.SejarahKita_Android_Test"/>
+      </classes>
+    </test>
+    <test name="Sejarah Kita Interuption" enabled="false"  >
+        <groups>
+            <run>
+<!--                <exclude name="playGames"/>-->
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.SejarahKita_Interuption_Test"/>
+        </classes>
+    </test>
+    <test name="Sejarah Kita Performance " enabled="false" >
+        <classes>
+            <class name="tests.SejarahKita_Performance_Test" enabled="false"/>
+        </classes>
+    </test>
+    <test name="Hibrid App Testing">
+        <classes>
+            <class name="tests.WebViewApp_Test"/>
+            <class name="tests.WebviewTest_Hybridweb_Test"/>
         </classes>
     </test>
 </suite>

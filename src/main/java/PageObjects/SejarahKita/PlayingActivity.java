@@ -3,6 +3,7 @@ package PageObjects.SejarahKita;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.touch.WaitOptions;
@@ -40,11 +41,24 @@ public class PlayingActivity extends SejarahKita_PageBase{
     @AndroidFindBy(id = "lbl_total_skor_game_ended_layout")
     public MobileElement tvScore;
 
+
     @AndroidFindBy(id = "btn_main_lagi_game_ended_layout")
     MobileElement btnMainlagi;
 
     @AndroidFindBy(id = "btn_lihat_leaderboard_game_ended_layout")
     MobileElement linkLeaderboard;
+
+    @AndroidFindBy(id = "com.uc.sejarahkita_mobile:id/btn_show_answer_casual_playing_game_fragment")
+    public MobileElement btnShowHint;
+
+    @AndroidFindBy(id = "com.uc.sejarahkita_mobile:id/btn_lanjut_show_answer_layout")
+    public MobileElement btnCloseHint;
+
+    @AndroidFindBy(id = "com.uc.sejarahkita_mobile:id/lbl_jawaban_show_answer_casual_layout")
+    public  MobileElement tvHint;
+
+
+
 
     public PlayingActivity(AppiumDriver appiumDriver) {
         super(appiumDriver);
@@ -55,7 +69,10 @@ public class PlayingActivity extends SejarahKita_PageBase{
     }
 
     public void isiJawaban(String jawaban){
-        sendText(inputJawaban , jawaban);
+        click(inputJawaban);
+        ((AndroidDriver)driver).getKeyboard().pressKey(jawaban);
+//        ((AndroidDriver)driver).hideKeyboard();
+
     }
     public void exitGame(){
         click(btnExit);
@@ -70,6 +87,24 @@ public class PlayingActivity extends SejarahKita_PageBase{
     }
     public void backToHome(){ click(btnMainlagi);}
     public void toDashboardFragment(){click(linkLeaderboard);}
+    public void openHintTray(){
+        try{
+            click(btnShowHint);
+        }catch (Exception ex){
+            System.out.println(" not casual mode");
+        }
+    }
+    public void closeHintTray(){
+        try{
+            click(btnCloseHint);
+        }catch (Exception ex){
+            System.out.println("hint tray is not openned");
+        }
+    }
+    public String getHint(){
+        waitForVisibility(tvHint);
+        return getAttribute(tvHint,"text");
+    }
 
     public void scrollDown(){
         AndroidTouchAction actions = new AndroidTouchAction(driver);

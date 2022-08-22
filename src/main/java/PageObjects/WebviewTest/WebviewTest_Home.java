@@ -8,13 +8,13 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 public class WebviewTest_Home extends PageBase {
 
 
-    @AndroidFindBy(id = "action_go_website")
+    @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.snc.test.webview2:id/action_go_website\")")
     public MobileElement gotoWeb;
 
-    @AndroidFindBy(id = "input_url")
+    @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.snc.test.webview2:id/input_url\")")
     public MobileElement inputUrl;
 
-    @AndroidFindBy(id = "android:id/button1")
+    @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"android:id/button1\")")
     public MobileElement buttonGo;
 
     public WebviewTest_Home(AppiumDriver appiumDriver) {

@@ -9,26 +9,18 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends SejarahKita_PageBase {
 
-//    String xpath_tvEmail ;
-//    String xpath_tvPassword ;
-//    String id_btnLogin = "btn_login";
-//    String id_btnRegister = "buttonReg";
-
     @AndroidFindBy(id = "btn_login")
     public MobileElement loginButton ;
 
     @AndroidFindBy(id = "buttonReg")
     public MobileElement  registerButton;
 
-    @AndroidFindBy(id = "img_logo_login_fragment")
-    public MobileElement  logoLogin;
-
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.EditText")
+    @AndroidFindBy(uiAutomator =
+            "new UiSelector().className(\"android.widget.EditText\").instance(0)")
     public MobileElement  tvEmail;
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.EditText")
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(1)")
     public MobileElement  tvPass;
-
 
 
     public LoginPage(AppiumDriver appiumDriver) {
@@ -40,6 +32,8 @@ public class LoginPage extends SejarahKita_PageBase {
     }
 
     public void toRegisterPage(){
+
+
         click(registerButton);
     }
 

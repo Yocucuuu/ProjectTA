@@ -17,6 +17,7 @@ public class LeaderboardFragment extends SejarahKita_PageBase{
     MobileElement btn_showAllHard;
 
     @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Navigate up\"]")
+//    @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Kembali ke atas\"]")
     MobileElement backbutton;
     public void tapShowAll_EasyLeaderboard(){
         click(btn_showAllEasy);

@@ -18,6 +18,17 @@ public class scrapClass {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
+        String lat = "-7.2912683°";
+        String lon ="112.75883°";
+        String reverse ="ID Gedung B iSTTS, Jalan Ngagel Madya III, RW 01, Baratajaya, Gubeng, Surabaya, East Java, 60284, Indonesia";
+        System.out.println(lat);
+        System.out.println(lon);
+        System.out.println(reverse);
+        lat = lat.substring(0,lat.length()-1);
+        lon = lon.substring(0,lon.length()-1);
+        System.out.println(Double.parseDouble(lat));
+        System.out.println(Double.parseDouble(lon));
+        System.out.println(reverse.contains("iSTTS"));
 //        URL url = new URL("https://www.sejarahkita.my.id/resetLogins");
 //        HttpURLConnection con = (HttpURLConnection) url.openConnection();
 //        con.setConnectTimeout(100000);

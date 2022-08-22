@@ -4,6 +4,7 @@ import PageObjects.PageBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -53,44 +54,63 @@ public class WebviewApp_Pagebase extends PageBase {
         click(btn_toWebviewAppPage);
     };
 
+//    public void closeAds(){
+//        wait = new WebDriverWait(driver, 5);
+//        wait.until(ExpectedConditions.elementToBeClickable(btn_closeAds));
+//        click(btn_closeAds);
+//    }
     public void closeAds(){
-        wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.elementToBeClickable(btn_closeAds));
-        click(btn_closeAds);
+        try{
+            MobileElement element = (MobileElement) new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")
+            ));
+            driver.findElement( By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")).click();
+        }catch (Exception ex){
+            System.out.println("theres error  Closed Ads");
+        }
     }
 
     public void toHome(){
+
         click(btn_drawer);
         click(btn_home);
+        closeAds();
     }
 
     public void toFeature(){
+
         click(btn_drawer);
         click(btn_feature);
+        closeAds();
     }
 
     public void toSupport(){
         click(btn_drawer);
         click(btn_support);
+        closeAds();
     }
 
     public void toOurProduct(){
         click(btn_drawer);
         click(btn_ourProduct);
+        closeAds();
     }
 
     public void toAboutUs(){
         click(btn_drawer);
         click(btn_aboutUs);
+        closeAds();
     }
     public void toContact(){
         click(btn_drawer);
         click(btn_contact);
+        closeAds();
     }
 
     public void toPrivacyPolicy(){
         click(btn_drawer);
         click(btn_privacyPolicy);
+        closeAds();
     }
 
 

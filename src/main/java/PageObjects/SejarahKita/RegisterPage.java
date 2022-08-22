@@ -4,6 +4,9 @@ import PageObjects.PageBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class RegisterPage extends SejarahKita_PageBase {
 
@@ -11,28 +14,37 @@ public class RegisterPage extends SejarahKita_PageBase {
     /*
     * email ,username , fullname ,  schooll , city , birthyear ,  pass, confpass
     * */
-    String xpath_tvEmail = "";
-    String xpath_tvUsername = "";
-    String xpath_tvFullname = "";
-    String xpath_tvSchool = "";
-    String xpath_tvCity = "";
-    String xpath_tvBirthyear = "";
-    String xpath_tvPassword = "";
-    String xpath_tvConfPass = "";
-    String id_btnLogin = "buttonLog";
-    String id_btnRegister = "btn_reg";
 
-    MobileElement loginButton = (MobileElement) driver.findElementById(id_btnLogin);
-    MobileElement registerButton = (MobileElement) driver.findElementById(id_btnRegister);
 
-    MobileElement tvEmail = (MobileElement) driver.findElementByXPath(xpath_tvEmail);
-    MobileElement tvUsername = (MobileElement) driver.findElementByXPath(xpath_tvPassword);
-    MobileElement tvFullname = (MobileElement) driver.findElementByXPath(xpath_tvFullname);
-    MobileElement tvSchool = (MobileElement) driver.findElementByXPath(xpath_tvSchool);
-    MobileElement tvCity = (MobileElement) driver.findElementByXPath(xpath_tvCity);
-    MobileElement tvBirthyear = (MobileElement) driver.findElementByXPath(xpath_tvBirthyear);
-    MobileElement tvConfpass = (MobileElement) driver.findElementByXPath(xpath_tvConfPass);
-    MobileElement tvPassword = (MobileElement) driver.findElementByXPath(xpath_tvPassword);
+    @AndroidFindBy(id = "buttonLog" )
+    MobileElement loginButton;
+
+    @AndroidFindBy(id ="btn_reg")
+    MobileElement registerButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Email\")")
+    public MobileElement tvEmail ;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Username\")")
+    MobileElement tvUsername;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Name\")")
+    MobileElement tvFullname;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"School\")")
+    MobileElement tvSchool;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"City\")")
+    MobileElement tvCity ;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Birthyear\")")
+    MobileElement tvBirthyear;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Password\")")
+    MobileElement tvPassword;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Confirm Password\")")
+    MobileElement tvConfpass;
 
     public RegisterPage(AppiumDriver androidDriver) {
         super(androidDriver);
@@ -40,7 +52,6 @@ public class RegisterPage extends SejarahKita_PageBase {
     public void toLogin(){
         click(loginButton);
     }
-
     public void tapRegister(){
         click(registerButton);
     }
@@ -50,7 +61,7 @@ public class RegisterPage extends SejarahKita_PageBase {
         sendText(tvEmail ,email);
     }
     public void sendUsername(String username){
-        sendText(tvFullname , username);
+        sendText(tvUsername , username);
     }
     public void sendFullname(String fullname){
         sendText(tvFullname , fullname);
