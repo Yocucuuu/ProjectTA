@@ -36,7 +36,7 @@ public class TestBase  {
     public static String sejarahKitaActivity = "com.uc.sejarahkita_mobile.view.MainActivity";
     public static String sejarahKitaAppPath = System.getProperty("user.dir")+"/apps/app-debug.apk";
     public static String sejarahKitaErrAppPath = System.getProperty("user.dir")+"/apps/app-debugERR.apk";
-    public static String chromeDriverPath = System.getProperty("user.dir")+"/apps/chromedriver.exe";
+    public static String chromeDriverPath = System.getProperty("user.dir")+"/apps/chromedriver86.exe";
     public static String sejarahKitaCoveragePath = System.getProperty("user.dir")+"/apps/";
     public static String webViewTestPackage= "com.snc.test.webview2";
     public static String webViewTestActivity= "com.snc.test.webview.activity.MainActivity";
@@ -111,6 +111,20 @@ public class TestBase  {
 //        driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
 
     }
+    public static void Android_WebviewTest_Emulator_setUp() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("platformVersion", "7.1");
+        capabilities.setCapability("automationName", "UiAutomator2");
+        capabilities.setCapability("udid", "emulator-5554");
+        capabilities.setCapability("appPackage","com.snc.test.webview2");
+        capabilities.setCapability("appActivity","com.snc.test.webview.activity.MainActivity");
+        capabilities.setCapability("acceptInsecureCerts",true);
+        capabilities.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
+        capabilities.setCapability("appium:chromedriverExecutable",chromeDriverPath);
+        driver = new AppiumDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+
+    }
     public static void Android_WebviewTest_C9_setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
@@ -155,8 +169,7 @@ public class TestBase  {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone X");
         capabilities.setCapability("automationName","XCUITest");
-//        capabilities.setCapability("isHeadless",true);
-//        capabilities.setCapability("showXcodeLog",true);
+        capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("app", System.getProperty("user.dir") + "/apps/AddModulo.zip");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
 
@@ -232,8 +245,6 @@ public class TestBase  {
         int scrollStart = (int) (dimension.getHeight() * 0.8);
         int scrollEnd = (int) (dimension.getHeight()*0.2);
         int center = (int) (dimension.getWidth()*0.5);
-
-
         AndroidTouchAction actions = new AndroidTouchAction(driver)
                 .press(PointOption.point(center, scrollStart))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))

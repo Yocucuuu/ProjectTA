@@ -10,10 +10,13 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +27,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -35,14 +39,17 @@ public class WebViewApp_Test extends TestBase{
 
     @BeforeClass
     public void setup() throws MalformedURLException {
-//        Android_WebViewApp_C9_setUp();
-        Android_Emulator_setUp();
-        driver.activateApp("com.robotemplates.webviewapp");
-//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        Android_WebViewApp_C9_setUp();
+//        Android_Emulator_setUp();
+//        driver.activateApp("com.robotemplates.webviewapp");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
+
+
     @AfterMethod
     public void afterMethod(){
         System.out.println(driver.getPageSource());
+
         driver.resetApp();
     }
     
@@ -168,10 +175,9 @@ public class WebViewApp_Test extends TestBase{
 
         envato.openCart();
 
-        Thread.sleep(2000);
         // bluestack
-        (new TouchAction(driver)).tap(PointOption.point(1030,194)).perform();
-
+        Thread.sleep(2000);
+        (new TouchAction(driver)).tap(PointOption.point(1018,255)).perform();
         envato.logout();
 
         envato.openProfileTray();
@@ -197,15 +203,15 @@ public class WebViewApp_Test extends TestBase{
 
         homePage.toGoogle();
 
+
+       driver.findElement(By.className("android.widget.EditText")).sendKeys("");
+
        int size=  driver.findElements(By.className("android.widget.EditText")).size();
         List<WebElement> listElement =  driver.findElements(By.className("android.widget.EditText"));
         listElement.get(0).click();
         listElement.get(0).sendKeys("eclass istts");
-
 //        ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.SEARCH));
         ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.NUMPAD_ENTER));
-
-
         driver.findElement(MobileBy.AccessibilityId("https://eclass.istts.ac.id")).click();
 
         Webview_eClass eclas = new Webview_eClass(driver);
@@ -214,17 +220,20 @@ public class WebViewApp_Test extends TestBase{
         eclas.clickSubmit();
         Thread.sleep(10000);
 
-
         Boolean isYoshua =driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Yoshua Dwi Santoso\")")).isDisplayed();
         softAssert.assertTrue(isYoshua);
+
         // jok lali assert e
         driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceId(\"toggleMenu\")")).click();
         driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Sign Out\")")).click();
 
         Thread.sleep(5000);
     }
+
+    // kok ke reverse geo e ga kescroll
     @Test(priority = 6)
     public void testGeolocation() throws InterruptedException {
+//        ((AndroidDriver)driver).toggleLocationServices();
         driver.setLocation(new Location(-7.291276687367432 , 112.75882812373266,0));
         homePage = new WebviewAppHome(driver);
         homePage.toHome();
@@ -232,7 +241,6 @@ public class WebViewApp_Test extends TestBase{
 
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"HTML\")"));
-        ((AndroidDriver<?>) driver).findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Reverse Geocoding\").instance(0))");
 
 //        ((AndroidDriver<?>) driver).findElementByAndroidUIAutomator(
 //                "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"watchPosition\").instance(0))");
@@ -242,9 +250,22 @@ public class WebViewApp_Test extends TestBase{
             homePage.clickBtnUpdateGeo();
             System.out.println("Cb geo is turned off");
         }
+        // ganti scroll manual  ae
+
+//        ((AndroidDriver<?>) driver).findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Reverse Geocoding\").instance(0))");
         Location loc = driver.location();
         SoftAssert softAssert = new SoftAssert();
 
+        Dimension dimension = driver.manage().window().getSize();
+        int scrollStart = (int) (dimension.getHeight() * 0.7);
+        int scrollEnd = (int) (dimension.getHeight()*0.3);
+        int center = (int) (dimension.getWidth()*0.5);
+        new AndroidTouchAction(driver)
+                .press(PointOption.point(center, scrollStart))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
+                .moveTo(PointOption.point(center, scrollEnd))
+                .release()
+                .perform();
         System.out.println(homePage.getLatitude());
         System.out.println(homePage.getLongitude());
         System.out.println(homePage.getReverseGeo());

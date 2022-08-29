@@ -99,11 +99,11 @@ public class Webview_Envato extends WebviewApp_Pagebase{
 
         waitForVisibility(btnCart);
 //        click(btnProfile);
-        // samsung c9
-//        (new TouchAction(driver)).tap(PointOption.point(1018,255)).perform();
+//         samsung c9
+        (new TouchAction(driver)).tap(PointOption.point(1018,255)).perform();
 
         // bluestack
-        (new TouchAction(driver)).tap(PointOption.point(1030,194)).perform();
+//        (new TouchAction(driver)).tap(PointOption.point(1041,154)).perform();
         System.out.println("open tray");
         closeAds();
     }

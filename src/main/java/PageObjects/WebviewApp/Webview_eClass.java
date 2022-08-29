@@ -13,8 +13,9 @@ public class Webview_eClass extends PageBase {
     @AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"id_password\")")
     MobileElement inpPassword;
 
-    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Sign In\")")
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.Button\").instance(0)")
     MobileElement btnLogin;
+
 
     public Webview_eClass(AppiumDriver appiumDriver) {
         super(appiumDriver);
