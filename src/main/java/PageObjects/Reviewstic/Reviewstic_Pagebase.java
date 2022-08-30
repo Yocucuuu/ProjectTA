@@ -1,6 +1,7 @@
-package Reviewstic;
+package PageObjects.Reviewstic;
 
 import PageObjects.PageBase;
+import PageObjects.SejarahKita.GameFragment;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.*;
@@ -16,7 +17,7 @@ public class Reviewstic_Pagebase extends PageBase {
     @iOSXCUITFindBy(id = "Promos")
     public MobileElement fragPromo;
 
-    @iOSXCUITFindBy(id = "")
+    @iOSXCUITFindBy(id = "back")
     public MobileElement buttonBack;
 
     @iOSXCUITFindBy(accessibility = "Ok")
@@ -24,5 +25,18 @@ public class Reviewstic_Pagebase extends PageBase {
 
     public Reviewstic_Pagebase(AppiumDriver appiumDriver) {
         super(appiumDriver);
+    }
+
+    public void toPromoFrag(){
+        click(fragPromo);
+    }
+
+    public void toTransactionFrag(){
+        click(fragTransaction);
+
+    }
+
+    public void toReviewFrag(){
+        click(fragReviews);
     }
 }

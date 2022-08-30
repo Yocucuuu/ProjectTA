@@ -182,13 +182,13 @@ public class TestBase  {
     public void iOS_Iphone7_Reviewistic() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "iOS");
-        //capabilities.setCapability("deviceName", "iPhone");
+        capabilities.setCapability("deviceName", "iPhone");
         capabilities.setCapability("automationName","XCUITest");
         capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("udid","285d71b11b4217e1ff18108230450dc53680038e");
-        capabilities.setCapability("bundleID","com.macrosoft.reviewistic");
-        capabilities.setCapability("xcodeOrgId","com.macrosoft.reviewistic");
-        capabilities.setCapability("xcodeSigningId","com.macrosoft.reviewistic");
+        capabilities.setCapability("bundleId","com.macrosoft.reviewistic");
+//        capabilities.setCapability("xcodeOrgId","com.macrosoft.reviewistic");
+//        capabilities.setCapability("xcodeSigningId","com.macrosoft.reviewistic");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
 
        /* iPhone Simulator, iPad Simulator, iPhone Retina 4-inch, Android Emulator, Galaxy S4, etc....

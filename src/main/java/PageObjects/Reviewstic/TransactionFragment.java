@@ -1,4 +1,4 @@
-package Reviewstic;
+package PageObjects.Reviewstic;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -15,7 +15,7 @@ public class TransactionFragment extends Reviewstic_Pagebase{
 
     /*
     * cara dapet list per row findelement byaccesibility id dari row
-    *
+    * #14
     * */
 
     public TransactionFragment(AppiumDriver appiumDriver) {

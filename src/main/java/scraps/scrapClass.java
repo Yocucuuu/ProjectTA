@@ -1,13 +1,18 @@
 package scraps;
 
 import org.json.simple.parser.ParseException;
+import utils.CSVReader;
 import utils.JsonReader;
+import utils.ReviewisticTransaction;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.jar.JarOutputStream;
 
 public class scrapClass {
 
@@ -18,7 +23,17 @@ public class scrapClass {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-        String lat = "-7.2912683°";
+
+        ArrayList<ReviewisticTransaction> list = (ArrayList<ReviewisticTransaction>) CSVReader.getReviewsticTransactionData();
+        for(ReviewisticTransaction trans :list){
+            System.out.println(trans);
+        }
+
+        for(int i=1;i<=5;i++){
+            int temp = CSVReader.getReviewCount("Price" , i+"");
+            System.out.println(temp);
+        }
+        /*String lat = "-7.2912683°";
         String lon ="112.75883°";
         String reverse ="ID Gedung B iSTTS, Jalan Ngagel Madya III, RW 01, Baratajaya, Gubeng, Surabaya, East Java, 60284, Indonesia";
         System.out.println(lat);
@@ -28,7 +43,7 @@ public class scrapClass {
         lon = lon.substring(0,lon.length()-1);
         System.out.println(Double.parseDouble(lat));
         System.out.println(Double.parseDouble(lon));
-        System.out.println(reverse.contains("iSTTS"));
+        System.out.println(reverse.contains("iSTTS"));*/
 //        URL url = new URL("https://www.sejarahkita.my.id/resetLogins");
 //        HttpURLConnection con = (HttpURLConnection) url.openConnection();
 //        con.setConnectTimeout(100000);
