@@ -9,13 +9,20 @@ import java.util.List;
 public class DetailTransaction extends Reviewstic_Pagebase{
 
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Reviewistic\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeStaticText")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Reviewistic\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/" +
+            "XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/" +
+            "XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeStaticText")
     MobileElement labelRatingPrice;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Reviewistic\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeStaticText")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Reviewistic\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/" +
+            "XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/" +
+            "XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeStaticText")
     MobileElement labelRatingService;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Reviewistic\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[5]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeStaticText")
+
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Reviewistic\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/" +
+            "XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/" +
+            "XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeStaticText")
     MobileElement labelRatingProduct;
 
     @iOSXCUITFindBy(accessibility = "Empty list")

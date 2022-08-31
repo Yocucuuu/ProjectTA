@@ -79,7 +79,7 @@ public class CSVReader {
         return angka;
     }
     public static ReviewisticTransaction getTransactionByID(String id){
-        List<ReviewisticTransaction> list = getReviewsticDetailTransactionData();
+        List<ReviewisticTransaction> list = getReviewsticTransactionData();
         ReviewisticTransaction result = null;
         for (ReviewisticTransaction  trans : list){
             if(trans.nomorTransaksi.equalsIgnoreCase(id)){

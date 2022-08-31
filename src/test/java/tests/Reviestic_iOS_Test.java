@@ -5,14 +5,14 @@ import PageObjects.Reviewstic.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.graalvm.compiler.debug.CSVUtil;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import org.testng.asserts.Assertion;
 import org.testng.asserts.SoftAssert;
 import utils.CSVReader;
 
@@ -36,12 +36,17 @@ public class Reviestic_iOS_Test extends TestBase {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
+    @AfterMethod
+    public void afterMethod() {
+        driver.resetApp();
+    }
+
     @AfterClass
     public void afterClass() {
         driver.quit();
     }
 
-    @Test(groups = "Reviews" )
+    @Test(groups = "Reviews" , priority = 0)
     public void countReviewsEachTab() {
         int temp =0;
         SoftAssert softA = new SoftAssert();
@@ -69,7 +74,7 @@ public class Reviestic_iOS_Test extends TestBase {
         }
 
         for(int i=1 ;i<=5 ;i++){
-            allReviewPage.toTabPrice();
+            allReviewPage.toTabProduk();
             allReviewPage.toRating(i+"");
             temp = CSVReader.getReviewCount("Produk" , i+"");
             softA.assertEquals(temp , allReviewPage.getTableRow());
@@ -78,7 +83,7 @@ public class Reviestic_iOS_Test extends TestBase {
         for(int i=1 ;i<=5 ;i++){
             allReviewPage.toTabPrice();
             allReviewPage.toRating(i+"");
-            temp = CSVReader.getReviewCount("All" , i+"");
+            temp = CSVReader.getReviewCount("Price" , i+"");
             softA.assertEquals(temp , allReviewPage.getTableRow());
         }
         softA.assertAll();
@@ -86,7 +91,7 @@ public class Reviestic_iOS_Test extends TestBase {
 
     }
 
-    @Test(groups = "Reviews" )  // dijamin error
+    @Test(groups = "Reviews" ,priority = 1 )  // dijamin error
     public void countReviewsEachTabAfterRefresh() throws InterruptedException {
         int temp =0;
         SoftAssert softA = new SoftAssert();
@@ -120,28 +125,28 @@ public class Reviestic_iOS_Test extends TestBase {
             softA.assertEquals(temp , allReviewPage.getTableRow());
         }
 
-//        for(int i=1 ;i<=5 ;i++){
-//            allReviewPage.toTabService();
-//            allReviewPage.toRating(i+"");
-//            temp = CSVReader.getReviewCount("Service" , i+"");
-//            int rows = allReviewPage.getTableRow();
-//            System.out.println(rows +"___" + temp + "__"+i);
-//            softA.assertEquals(temp , rows);
-//        }
-//
-//        for(int i=1 ;i<=5 ;i++){
-//            allReviewPage.toTabPrice();
-//            allReviewPage.toRating(i+"");
-//            temp = CSVReader.getReviewCount("Produk" , i+"");
-//            softA.assertEquals(temp , allReviewPage.getTableRow());
-//        }
-//
-//        for(int i=1 ;i<=5 ;i++){
-//            allReviewPage.toTabPrice();
-//            allReviewPage.toRating(i+"");
-//            temp = CSVReader.getReviewCount("All" , i+"");
-//            softA.assertEquals(temp , allReviewPage.getTableRow());
-//        }
+        for(int i=1 ;i<=5 ;i++){
+            allReviewPage.toTabService();
+            allReviewPage.toRating(i+"");
+            temp = CSVReader.getReviewCount("Service" , i+"");
+            int rows = allReviewPage.getTableRow();
+            System.out.println(rows +"___" + temp + "__"+i);
+            softA.assertEquals(temp , rows);
+        }
+
+        for(int i=1 ;i<=5 ;i++){
+            allReviewPage.toTabProduk();
+            allReviewPage.toRating(i+"");
+            temp = CSVReader.getReviewCount("Produk" , i+"");
+            softA.assertEquals(temp , allReviewPage.getTableRow());
+        }
+
+        for(int i=1 ;i<=5 ;i++){
+            allReviewPage.toTabPrice();
+            allReviewPage.toRating(i+"");
+            temp = CSVReader.getReviewCount("Price" , i+"");
+            softA.assertEquals(temp , allReviewPage.getTableRow());
+        }
         softA.assertAll();
 
 
@@ -149,33 +154,38 @@ public class Reviestic_iOS_Test extends TestBase {
 
     }
 
-    @Test(groups = "Reviews" )
+    @Test(groups = "Reviews" ,priority = 2)
     public void searchTransactionWithID14() {
         SoftAssert  softA =  new SoftAssert();
         TransactionFragment transactionFrag =  new TransactionFragment(driver);
-        transactionFrag.searchTransaction("14");
-        driver.findElementByAccessibilityId("14");
+        transactionFrag.toTransactionFrag();
+        transactionFrag.searchTransaction("#14");
+        driver.findElementByAccessibilityId("#14");
+
+
 
     }
 
-    @Test(groups = "Transaction" ,dependsOnGroups = "Reviews")
+    @Test(groups = "Transaction" , priority = 3)
     public void searchTransactionWithPrefix1 () {
         SoftAssert  softA =  new SoftAssert();
         TransactionFragment transactionFrag =  new TransactionFragment(driver);
-        transactionFrag.searchTransaction("1");
-        driver.findElementByAccessibilityId("14");
-        driver.findElementByAccessibilityId("1");
-        driver.findElementByAccessibilityId("10");
+        transactionFrag.toTransactionFrag();
+        transactionFrag.searchTransaction("#1");
+        driver.findElementByAccessibilityId("#14");
+        driver.findElementByAccessibilityId("#1");
+        driver.findElementByAccessibilityId("#10");
 
 
     }
 
-    @Test(groups = "Transaction" )
+    @Test(groups = "Transaction" ,priority = 4)
     public void validateReviewedTransactionData() {
         SoftAssert  softA =  new SoftAssert();
-        String id = "2";
+        String id = "#2";
         TransactionFragment transactionFrag =  new TransactionFragment(driver);
-        transactionFrag.searchTransaction("#"+id);
+        transactionFrag.toTransactionFrag();
+        transactionFrag.searchTransaction(id);
         driver.findElementByAccessibilityId(id).click();
 
         DetailTransaction detail = new DetailTransaction(driver);
@@ -183,7 +193,11 @@ public class Reviestic_iOS_Test extends TestBase {
         String  price = detail.getPriceRating();
         String  service = detail.getServiceRating();
         String  product = detail.getProductRating();
-        ReviewisticTransaction trans = CSVReader.getTransactionByID(id);
+        System.out.println(review);
+        System.out.println(price);
+        System.out.println(service);
+        System.out.println(product);
+        ReviewisticTransaction trans = CSVReader.getTransactionByID(id.substring(1));
 
         softA.assertEquals(review , trans.review);
         softA.assertEquals(price, trans.ratingPrice);
@@ -195,12 +209,13 @@ public class Reviestic_iOS_Test extends TestBase {
 
     }
 
-    @Test(groups = "Transaction" )
+    @Test(groups = "Transaction", priority = 5)
     public void validateUnreviewedTransactionData() {
         SoftAssert  softA =  new SoftAssert();
-        String id = "2";
+        String id = "#3";
         TransactionFragment transactionFrag =  new TransactionFragment(driver);
-        transactionFrag.searchTransaction("#"+id);
+        transactionFrag.toTransactionFrag();
+        transactionFrag.searchTransaction(id);
         driver.findElementByAccessibilityId(id).click();
 
         DetailTransaction detail = new DetailTransaction(driver);
@@ -210,26 +225,27 @@ public class Reviestic_iOS_Test extends TestBase {
 
     }
 
-    @Test(groups = "Transaction" )
+    @Test(groups = "Transaction",priority = 6 )
     public void validateDetailTransaction() {
         SoftAssert  softA =  new SoftAssert();
-        String id = "2";
+        String id = "#2";
         TransactionFragment transactionFrag =  new TransactionFragment(driver);
-        transactionFrag.searchTransaction("#"+id);
+        transactionFrag.toTransactionFrag();
+        transactionFrag.searchTransaction(id);
         driver.findElementByAccessibilityId(id).click();
 
         DetailTransaction detail = new DetailTransaction(driver);
 
         List<MobileElement> listDetail= detail.getDetailTransaction();
-        ReviewisticTransaction trans = CSVReader.getTransactionByID(id);
+        ReviewisticTransaction trans = CSVReader.getTransactionByID(id.substring(1));
 
-        softA.assertEquals(listDetail.size(), 2); // eror yayyyyyyy
+        softA.assertEquals(listDetail.size(), 2); // eror yayyyyyyy  , di table e harus e cuma ada 2 transaksi
 
         softA.assertAll();
 
     }
 
-    @Test(groups = "Promo" )
+    @Test(groups = "Promo" , priority = 7)
     public void addPromowithEmptyField() {
         PromoFragment promo = new PromoFragment(driver);
         promo.toPromoFrag();
@@ -238,10 +254,11 @@ public class Reviestic_iOS_Test extends TestBase {
         promo.clickAddPromo();
         promo.clearAllField();
         promo.submitAddPromo();
+        promo.confirmErrorMessage();
 
     }
 
-    @Test(groups = "Promo" )
+    @Test(groups = "Promo",priority = 8 )
     public void addPromoWithEmptyDesc() {
         PromoFragment promo = new PromoFragment(driver);
         promo.toPromoFrag();
@@ -249,23 +266,78 @@ public class Reviestic_iOS_Test extends TestBase {
 
         promo.clickAddPromo();
         promo.clearAllField();
-        promo.
+        promo.sendName("Demo Voucher Name");
         promo.submitAddPromo();
+        promo.confirmErrorMessage();
+        // harus e muncul toast
     }
 
-    @Test(groups = "Promo" )
+    @Test(groups = "Promo",priority = 9 )
     public void addPromoWithEmptyName() {
+        PromoFragment promo = new PromoFragment(driver);
+        promo.toPromoFrag();
+
+
+        promo.clickAddPromo();
+        promo.clearAllField();
+        promo.sendDesc("Demo Voucher Desc" );
+        promo.submitAddPromo();
+        promo.confirmErrorMessage();
+        // harus e muncul toast
     }
 
-    @Test(groups = "Promo" )
+    @Test(groups = "Promo" ,priority = 10)
     public void addPromoWithInvalidDate() {
+        PromoFragment promo = new PromoFragment(driver);
+        promo.toPromoFrag();
+
+
+        promo.clickAddPromo();
+        promo.clearAllField();
+        promo.sendDesc("Demo Voucher Desc" );
+        promo.sendName("Demo Voucher Name" );
+        promo.openDatePicker();
+        promo.decreaseMonth();
+        promo.selectDate();
+        promo.closeDatePicker();
+
+        promo.submitAddPromo();
+        promo.confirmErrorMessage();
+        // harus e muncul toast , tapi malah success
+
     }
 
-    @Test(groups = "Promo" )
+    @Test(groups = "Promo",priority = 11 )
     public void successAddPromo() {
+
+        PromoFragment promo = new PromoFragment(driver);
+        promo.toPromoFrag();
+
+        promo.clickAddPromo();
+        promo.clearAllField();
+        promo.sendDesc("Demo Voucher Desc" );
+        promo.sendName("Demo Voucher Name" );
+        promo.openDatePicker();
+        promo.increaseMonth();
+        promo.selectRandomDate();
+        promo.closeDatePicker();
+        promo.submitAddPromo();
+
+
+
     }
 
-    @Test(groups = "Promo" )
+    @Test(groups = "Promo" ,priority = 12 , dependsOnMethods = "successAddPromo") // iki yo error pisan
     public void validateTransactionInsertedPromo() {
+
+        // pasti sg terakhir
+        PromoFragment promo = new PromoFragment(driver);
+        promo.getLastInsertedVoucher().click();
+        List<IOSElement> listTransaction = ((IOSDriver)driver).findElementsByClassName("XCUIElementTypeCell");
+        Assert.assertEquals(listTransaction.size(),0);
+
+
+
+
     }
 }

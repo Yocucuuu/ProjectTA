@@ -9,6 +9,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.touch.offset.PointOption;
 
 import java.util.List;
+import java.util.Random;
 
 public class PromoFragment extends Reviewstic_Pagebase{
 
@@ -63,9 +64,21 @@ public class PromoFragment extends Reviewstic_Pagebase{
         new TouchAction<>(driver).tap(PointOption.point(317, 239)).perform();
     }
 
-    public void selectDate(String date){
-        selectedDate = (MobileElement) driver.findElementsByAccessibilityId(date);
+    public void closeDatePicker(){
+        waitForVisibility(prevMonth);
+        new TouchAction<>(driver).tap(PointOption.point(317, 239)).perform();
+    }
+
+    public void selectDate(){
+        selectedDate = (MobileElement) driver.findElementByXPath("//XCUIElementTypeButton[@name=\"Saturday, 30 July\"]");
         selectedDate.click();
+    }
+    public void selectRandomDate(){
+
+        new TouchAction<>(driver)
+                .press(PointOption.point(new Random().nextInt(240) +60, new Random().nextInt(100)+400))
+                .release()
+                .perform();
     }
     public void closeTrayAddVoucher(){
         waitForVisibility(btnAddVoucher);
@@ -77,15 +90,15 @@ public class PromoFragment extends Reviewstic_Pagebase{
     }
 
     public void gotoDetailbyVoucherName(String name){
-        List<IOSElement> listElement = ((IOSDriver)driver).findElementsByTagName("XCUIElementTypeCell");
+        List<IOSElement> listElement = ((IOSDriver)driver).findElementsByClassName("XCUIElementTypeCell");
         IOSElement element = listElement.get(listElement.size());
         element.findElementByAccessibilityId(name).click();
     }
 
 
     public IOSElement getLastInsertedVoucher(){
-        List<IOSElement> listElement = ((IOSDriver)driver).findElementsByTagName("XCUIElementTypeCell");
-        IOSElement element = listElement.get(listElement.size());
+        List<IOSElement> listElement = ((IOSDriver)driver).findElementsByClassName("XCUIElementTypeCell");
+        IOSElement element = listElement.get(listElement.size()-1);
         return element;
         //IOSElement tvDate = (IOSElement) element.findElementByName();  //yyyy-mm-dd
         //IOSElement tvName = (IOSElement) element.findElementByAccessibilityId(name);
@@ -105,6 +118,22 @@ public class PromoFragment extends Reviewstic_Pagebase{
         clear(etAddVoucherName);
     }
 
+    public void sendDesc(String text){
+        sendText(etAddVoucherDesc,text);
+    }
+
+    public void sendName(String text){
+        sendText(etAddVoucherName,text);
+    }
+
+    public void decreaseMonth(){
+        click(prevMonth);
+    }
+
+
+    public void increaseMonth(){
+        click(nextMonth);
+    }
 
 
 }

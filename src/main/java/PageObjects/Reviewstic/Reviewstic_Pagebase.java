@@ -39,4 +39,10 @@ public class Reviewstic_Pagebase extends PageBase {
     public void toReviewFrag(){
         click(fragReviews);
     }
+
+    public void confirmErrorMessage(){
+        click(btnOK);
+    }
+
+
 }

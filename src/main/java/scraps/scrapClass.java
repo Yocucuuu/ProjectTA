@@ -24,15 +24,8 @@ public class scrapClass {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-        ArrayList<ReviewisticTransaction> list = (ArrayList<ReviewisticTransaction>) CSVReader.getReviewsticTransactionData();
-        for(ReviewisticTransaction trans :list){
-            System.out.println(trans);
-        }
-
-        for(int i=1;i<=5;i++){
-            int temp = CSVReader.getReviewCount("Price" , i+"");
-            System.out.println(temp);
-        }
+        ReviewisticTransaction trans = CSVReader.getTransactionByID("#2".substring(1));
+        System.out.println(trans);
         /*String lat = "-7.2912683°";
         String lon ="112.75883°";
         String reverse ="ID Gedung B iSTTS, Jalan Ngagel Madya III, RW 01, Baratajaya, Gubeng, Surabaya, East Java, 60284, Indonesia";
