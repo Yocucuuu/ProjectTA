@@ -92,6 +92,18 @@ public class PromoFragment extends Reviewstic_Pagebase{
         //IOSElement tvDesc = (IOSElement) element.findElementByAccessibilityId(desc);
     }
 
+    public void clickAddPromo(){
+        click(btnAddPromo);
+    }
+
+    public void submitAddPromo(){
+        click(btnAddVoucher);
+    }
+
+    public void clearAllField(){
+        clear(etAddVoucherDesc);
+        clear(etAddVoucherName);
+    }
 
 
 

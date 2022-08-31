@@ -28,8 +28,6 @@ public class GameFragment extends SejarahKita_PageBase {
     MobileElement btnCancel;
 
 
-
-
     public GameFragment(AppiumDriver appiumDriver) {
         super(appiumDriver);
     }

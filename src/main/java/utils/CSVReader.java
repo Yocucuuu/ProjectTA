@@ -1,6 +1,8 @@
 package utils;
 
 
+import PageObjects.Reviewstic.TransactionFragment;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -75,6 +77,17 @@ public class CSVReader {
         }
 
         return angka;
+    }
+    public static ReviewisticTransaction getTransactionByID(String id){
+        List<ReviewisticTransaction> list = getReviewsticDetailTransactionData();
+        ReviewisticTransaction result = null;
+        for (ReviewisticTransaction  trans : list){
+            if(trans.nomorTransaksi.equalsIgnoreCase(id)){
+                result = trans;
+                break;
+            }
+        }
+        return result;
     }
 
 }

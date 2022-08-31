@@ -9,7 +9,6 @@ public class TransactionFragment extends Reviewstic_Pagebase{
     @iOSXCUITFindBy(accessibility = "Transaction number...")
     MobileElement etSearchTransaction;
 
-
     @iOSXCUITFindBy(accessibility = "Clear text")
     MobileElement btnClearSearch; // cuma akan muncul kalau ada tet nde dalem e ET
 
@@ -22,6 +21,13 @@ public class TransactionFragment extends Reviewstic_Pagebase{
         super(appiumDriver);
     }
 
+    public void searchTransaction(String id){
+        sendText(etSearchTransaction , id);
+    }
+
+    public void clearSearch(){
+        click(btnClearSearch);
+    }
 
 
 
