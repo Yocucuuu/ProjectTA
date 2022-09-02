@@ -29,7 +29,7 @@ import static utils.CSVReader.getReviewsticTransactionData;
 
 public class Reviestic_iOS_Test extends TestBase {
 
-    ReviewsFragment review;
+
     @BeforeClass
     public void beforeClass() throws MalformedURLException {
         iOS_Iphone7_Reviewistic();

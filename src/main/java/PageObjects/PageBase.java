@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.serverevents.CustomEvent;
 import io.appium.java_client.serverevents.ServerEvents;
@@ -74,6 +75,8 @@ public class PageBase {
         evt.setEventName("Send Element element" + element.getTagName());
         driver.logEvent(evt);
         element.sendKeys(text);
+
+
     }
 
     public String getText(MobileElement element) {

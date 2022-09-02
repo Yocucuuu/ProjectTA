@@ -2,6 +2,7 @@ package PageObjects.Reviewstic;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 import java.sql.SQLOutput;
@@ -38,8 +39,12 @@ public class AllReviewPage extends Reviewstic_Pagebase{
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"Reviewistic\"]/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable")
     public MobileElement table;
 
-
-
+    @Override
+    public void sendText(MobileElement element, String text) {
+        super.sendText(element, text);
+        ((IOSDriver)driver).isKeyboardShown();
+        ((IOSDriver)driver).hideKeyboard();
+    }
 
     public AllReviewPage(AppiumDriver appiumDriver) {
         super(appiumDriver);
