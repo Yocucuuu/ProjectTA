@@ -187,9 +187,9 @@ public class TestBase  {
         capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("udid","285d71b11b4217e1ff18108230450dc53680038e");
         capabilities.setCapability("bundleId","com.macrosoft.reviewistic");
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
 //        capabilities.setCapability("xcodeOrgId","com.macrosoft.reviewistic");
 //        capabilities.setCapability("xcodeSigningId","com.macrosoft.reviewistic");
-        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
 
        /* iPhone Simulator, iPad Simulator, iPhone Retina 4-inch, Android Emulator, Galaxy S4, etc....
         On iOS, this should be one of the valid devices returned

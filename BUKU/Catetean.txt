@@ -1,0 +1,19 @@
+Pakai Appium bisa testing native
+program hybrid -> jelaskan definisinya
+
+    untuk otomasi aplikasi hybbrid dapat 2 mode 
+    - melakukan secara native-> yaitu mengakses tiap komponen sebagai View 
+    - atau secara web -> karna technicaly hybrid app adalah aplikasi web  yang dibungkus aplikasi native
+        
+        untuk melakuakn secara web pada komponen webviewnya 
+
+        https://appium.io/docs/en/writing-running-appium/web/hybrid/
+        There is an additional step necessary within your app build, unfortunately. As described in the Android remote debugging docs it is necessary to set to true the setWebContentsDebuggingEnabled property on the android.webkit.WebView element.
+
+        pada aplikasi Webview App (proposal) bisa dilakukan testing tapi secara NATIVE , tidak bisa mengganti context ke Webview karna yang menjadi tebakan saya Developer tidak menyetel setWebContentsDebuggingEnabled 
+
+        untuk menjadi contoh pengujian aplikasi hybrid akan dilakukan pengujian website via aapp "Webview test" dimana dpaat menggunakan context Web 
+    
+    
+
+    

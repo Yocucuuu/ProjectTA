@@ -2,9 +2,7 @@ package tests;
 
 import PageObjects.PageBase;
 import PageObjects.Reviewstic.*;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
+import io.appium.java_client.*;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.ios.IOSTouchAction;
@@ -44,6 +42,18 @@ public class Reviestic_iOS_Test extends TestBase {
     @AfterClass
     public void afterClass() {
         driver.quit();
+    }
+
+    @Test
+    public void demo() {
+        ((IOSDriver)driver).shake();
+        ((IOSDriver)driver).hideKeyboard();
+        ((IOSDriver)driver).isKeyboardShown();
+        ((IOSDriver)driver).lockDevice();
+        ((IOSDriver)driver).lockDevice();
+        ((IOSDriver)driver).execute("","");
+
+
     }
 
     @Test(groups = "Reviews" , priority = 0)
