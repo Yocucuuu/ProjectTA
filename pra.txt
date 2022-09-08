@@ -1,0 +1,14 @@
+-Greeting 
+good morning mr Edwin  , my dear friends thx for coming here 
+today i will represent my pre seminar about my last assingment entitled "Studi Pengkajian Automated mobile app testing menggunakan Appium" 
+ 
+- Testing ? 
+according 
+because it has gone through development phase
+-Manual vs Auto
+relate to UI/UX
+-Tools
+Appium 
+Appium 
+
+Aplication

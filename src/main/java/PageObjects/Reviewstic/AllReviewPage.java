@@ -1,9 +1,12 @@
 package PageObjects.Reviewstic;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.HidesKeyboard;
+import io.appium.java_client.HidesKeyboardWithKeyName;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.appium.java_client.remote.HideKeyboardStrategy;
 
 import java.sql.SQLOutput;
 
@@ -42,8 +45,10 @@ public class AllReviewPage extends Reviewstic_Pagebase{
     @Override
     public void sendText(MobileElement element, String text) {
         super.sendText(element, text);
-        ((IOSDriver)driver).isKeyboardShown();
-        ((IOSDriver)driver).hideKeyboard();
+        if(((IOSDriver)driver).isKeyboardShown()){
+            ((IOSDriver)driver).hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE);
+//            ((IOSDriver)driver).hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE);
+        };
     }
 
     public AllReviewPage(AppiumDriver appiumDriver) {

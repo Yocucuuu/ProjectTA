@@ -37,7 +37,6 @@ public class Reviewistic_IOS_Interuption_Test extends TestBase{
     @Test
     public void lockDeviceTest() {
 
-
         int temp =0;
         SoftAssert softA = new SoftAssert();
         ReviewsFragment review = new ReviewsFragment(driver);

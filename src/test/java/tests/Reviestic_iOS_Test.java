@@ -51,7 +51,7 @@ public class Reviestic_iOS_Test extends TestBase {
         ((IOSDriver)driver).isKeyboardShown();
         ((IOSDriver)driver).lockDevice();
         ((IOSDriver)driver).lockDevice();
-        ((IOSDriver)driver).execute("","");
+//        ((IOSDriver)driver).execute("","");
 
 
     }
@@ -249,7 +249,7 @@ public class Reviestic_iOS_Test extends TestBase {
         List<MobileElement> listDetail= detail.getDetailTransaction();
         ReviewisticTransaction trans = CSVReader.getTransactionByID(id.substring(1));
 
-        softA.assertEquals(listDetail.size(), 2); // eror yayyyyyyy  , di table e harus e cuma ada 2 transaksi
+        softA.assertEquals(listDetail.size(), 2); // eror yay   yyyyyy  , di table e harus e cuma ada 2 transaksi
 
         softA.assertAll();
 
