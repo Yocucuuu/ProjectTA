@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class PageBase {
 
     public AppiumDriver driver;
-    public static final long WAIT = 35;
+    public static final long WAIT = 10;
     public WebDriverWait wait;
     CustomEvent evt;
 

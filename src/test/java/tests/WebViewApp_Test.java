@@ -42,7 +42,7 @@ public class WebViewApp_Test extends TestBase{
         Android_WebViewApp_C9_setUp();
 //        Android_Emulator_setUp();
 //        driver.activateApp("com.robotemplates.webviewapp");
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 

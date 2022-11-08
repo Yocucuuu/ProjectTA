@@ -3,7 +3,9 @@ package PageObjects.WebviewApp;
 import PageObjects.PageBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,7 +18,11 @@ public class WebviewApp_Pagebase extends PageBase {
     }
 
     @AndroidFindBy(accessibility = "Interstitial close button")
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View[2]/android.widget.TextView")
     public MobileElement btn_closeAds;
+
+    @AndroidFindBy(id = "abgcp")
+    public MobileElement addContainer;
 
     @AndroidFindBy(accessibility = "WEBVIEW APP PAGE")
     MobileElement btn_toWebviewAppPage;
@@ -61,12 +67,18 @@ public class WebviewApp_Pagebase extends PageBase {
 //    }
     public void closeAds(){
         try{
-            MobileElement element = (MobileElement) new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")
-            ));
-            driver.findElement( By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")).click();
+            MobileElement element = (MobileElement) new WebDriverWait(driver, 5)
+                    .until(ExpectedConditions.elementToBeClickable
+                    (
+                        By.id("abgcp")
+                    )
+                );
+            (new TouchAction(driver)).tap(PointOption.point(1005,65)).perform();
+//            driver.findElement( By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")).click();
+//            driver.findElement( By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")).click();
+
         }catch (Exception ex){
-            System.out.println("theres error  Closed Ads");
+            System.out.println("There is no ads");
         }
     }
 

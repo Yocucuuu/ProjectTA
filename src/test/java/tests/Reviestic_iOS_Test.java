@@ -101,6 +101,7 @@ public class Reviestic_iOS_Test extends TestBase {
 
     }
 
+    //PPT
     @Test(groups = "Reviews" ,priority = 1 )  // dijamin error
     public void countReviewsEachTabAfterRefresh() throws InterruptedException {
         int temp =0;

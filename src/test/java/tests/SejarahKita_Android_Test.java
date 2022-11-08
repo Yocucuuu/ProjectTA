@@ -357,9 +357,10 @@ public class SejarahKita_Android_Test extends TestBase {
             FileUtils.copyFile(srcFile,targetFile);
         }
 //        driver.resetApp();
-//        driver.activateApp(sejarahKitaPackage);
+
         driver.closeApp();
-        driver.launchApp();
+        driver.activateApp(sejarahKitaPackage);
+//        driver.launchApp();
 
         Thread.sleep(10_000);
     }

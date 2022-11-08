@@ -21,8 +21,8 @@ public class WebviewTest_Hybridweb_Test extends TestBase{
 
     @BeforeClass
     public void beforeClass() throws MalformedURLException {
-//        Android_WebviewTest_C9_setUp();
-        Android_WebviewTest_Emulator_setUp();
+        Android_WebviewTest_C9_setUp();
+//        Android_WebviewTest_Emulator_setUp();
     }
 
     @AfterClass

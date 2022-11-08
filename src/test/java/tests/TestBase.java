@@ -36,7 +36,7 @@ public class TestBase  {
     public static String sejarahKitaActivity = "com.uc.sejarahkita_mobile.view.MainActivity";
     public static String sejarahKitaAppPath = System.getProperty("user.dir")+"/apps/app-debug.apk";
     public static String sejarahKitaErrAppPath = System.getProperty("user.dir")+"/apps/app-debugERR.apk";
-    public static String chromeDriverPath = System.getProperty("user.dir")+"/apps/chromedriver86.exe";
+    public static String chromeDriverPath = System.getProperty("user.dir")+"/apps/chromedriver106.exe";
     public static String sejarahKitaCoveragePath = System.getProperty("user.dir")+"/apps/";
     public static String webViewTestPackage= "com.snc.test.webview2";
     public static String webViewTestActivity= "com.snc.test.webview.activity.MainActivity";
@@ -99,10 +99,10 @@ public class TestBase  {
         capabilities.setCapability("platformVersion", "7.1");
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("udid", "804a468e");
-        capabilities.setCapability("app",sejarahKitaAppPath);
+//        capabilities.setCapability("app",sejarahKitaAppPath);
 
-//        capabilities.setCapability("appPackage",sejarahKitaPackage);
-//        capabilities.setCapability("appActivity","com.uc.sejarahkita_mobile.view.MainActivity");;
+        capabilities.setCapability("appPackage",sejarahKitaPackage);
+        capabilities.setCapability("appActivity","com.uc.sejarahkita_mobile.view.MainActivity");;
 
         capabilities.setCapability("autoGrantPermissions",true);
 
@@ -139,6 +139,7 @@ public class TestBase  {
         driver = new AppiumDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
 
     }
+
     public static void Android_WebViewApp_C9_setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
@@ -383,14 +384,14 @@ public class TestBase  {
 
         myWriter.write("======Server Log ===== \n");
         driver.manage().logs().getAvailableLogTypes();
-        LogEntries serverLog = driver.manage().logs().get("server");
+//        LogEntries serverLog = driver.manage().logs().get("server");
 //        LogEntries bugreport = driver.manage().logs().get("bugreport");
 
 
-        myWriter.write(serverLog.toString() + "\n");
-        for (LogEntry entry : serverLog) {
-            myWriter.write(new Date(entry.getTimestamp()) + " " + entry.getMessage() +"\n");
-        }
+//        myWriter.write(serverLog.toString() + "\n");
+//        for (LogEntry entry : serverLog) {
+//            myWriter.write(new Date(entry.getTimestamp()) + " " + entry.getMessage() +"\n");
+//        }
 //        myWriter.write(bugreport.toString()+ "\n");
 //        for (LogEntry entry : bugreport) {
 //            myWriter.write(new Date(entry.getTimestamp()) + " " + entry.getMessage() +"\n");

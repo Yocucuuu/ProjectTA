@@ -18,7 +18,8 @@ public class SejarahKita_PageBase extends PageBase {
     @AndroidFindBy(id = "gameFragment")
     public MobileElement fragGame;
 
-    @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Navigate up\"]")
+    // for emulator
+//    @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Navigate up\"]")
     @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Kembali ke atas\"]")
     public MobileElement backButton;
 

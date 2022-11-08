@@ -57,22 +57,32 @@ public class SejarahKita_RegisterLogin_Test extends TestBase {
         driver.activateApp(sejarahKitaPackage);
     }
 
-    @AfterClass(groups = "logout" , dependsOnGroups = "loginSuccess")
+    @AfterClass(groups = "logout" , dependsOnGroups = {"loginSuccess","registerFail"})
     public void logoutAndQuit() throws IOException {
-        SoftAssert softAssert = new SoftAssert();
-        ProfileFragment profileFragment = new ProfileFragment(driver);
-        profileFragment.toProfileFragment();
-        profileFragment.waitForVisibility(profileFragment.lblEmail);
-        scrollDown();
-        profileFragment.tapLogout();
 
-        login = new LoginPage(driver);
-        login.waitForVisibility(login.tvEmail);
-        softAssert.assertEquals(true,login.loginButton.isDisplayed());
+        try{
+            login = new LoginPage(driver);
+            if(login.loginButton.isDisplayed()){
+                ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.BACK));
+                ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.BACK)); // double press
+            }
+        }catch (Exception ex){
+            SoftAssert softAssert = new SoftAssert();
+            ProfileFragment profileFragment = new ProfileFragment(driver);
+            profileFragment.toProfileFragment();
+            profileFragment.waitForVisibility(profileFragment.lblEmail);
+            scrollDown();
+            profileFragment.tapLogout();
+
+            login = new LoginPage(driver);
+            login.waitForVisibility(login.tvEmail);
+            softAssert.assertEquals(true,login.loginButton.isDisplayed());
 //        driver.navigate().back();
 //        driver.navigate().back(); // punya fungsi yang sama
-        ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.BACK));
-        ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.BACK)); // double press
+            ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.BACK));
+            ((AndroidDriver)driver).pressKey(new KeyEvent(AndroidKey.BACK)); // double press
+        }
+
     }
 
     @AfterTest
@@ -154,7 +164,8 @@ public class SejarahKita_RegisterLogin_Test extends TestBase {
         register.tapRegister();
         Assert.assertEquals(register.getToastText(register.toastMessage) , "Please fill all field");
     }
-    // flaky
+
+
     @Test(priority = 1 ,groups = "registerSuccess",dependsOnGroups = "registerFail")
     public void registerThenLogin(){
 
