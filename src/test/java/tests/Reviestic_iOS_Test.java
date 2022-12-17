@@ -165,6 +165,71 @@ public class Reviestic_iOS_Test extends TestBase {
 
     }
 
+    //PPT
+    @Test(groups = "Reviews" ,priority = 1 )  // dijamin error
+    public void countReviewsEachTabAfterRefreshTEMP() throws InterruptedException {
+        int temp =0;
+        SoftAssert softA = new SoftAssert();
+        ReviewsFragment review = new ReviewsFragment(driver);
+        review.toReviewFrag();
+        review.toAllReview();
+
+        AllReviewPage allReviewPage = new AllReviewPage(driver);
+        // Service , Price , Produk , All Review
+
+        allReviewPage.waitForVisibility(allReviewPage.table);
+        Thread.sleep(5000);
+        // refresh table e
+        try {
+            new IOSTouchAction(driver)
+                    .press(PointOption.point(200, 250))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(200)))
+                    .moveTo(PointOption.point(200, 600))
+                    .release()
+                    .perform();
+            System.out.println("refresh");
+        } catch (Exception e) {
+            System.err.println("swipeElementIOS(): TouchAction FAILED\n" + e.getMessage());
+
+        }
+
+        for(int i=1 ;i<=5 ;i++){
+            allReviewPage.toTabAll();
+            allReviewPage.toRating(i+"");
+            temp = CSVReader.getReviewCount("All" , i+"");
+            softA.assertEquals(temp , allReviewPage.getTableRow());
+        }
+
+        for(int i=1 ;i<=5 ;i++){
+            allReviewPage.toTabService();
+            allReviewPage.toRating(i+"");
+            temp = CSVReader.getReviewCount("Service" , i+"");
+            int rows = allReviewPage.getTableRow();
+            System.out.println(rows +"___" + temp + "__"+i);
+            softA.assertEquals(temp , rows);
+        }
+
+        for(int i=1 ;i<=5 ;i++){
+            allReviewPage.toTabProduk();
+            allReviewPage.toRating(i+"");
+            temp = CSVReader.getReviewCount("Produk" , i+"");
+            softA.assertEquals(temp , allReviewPage.getTableRow());
+        }
+
+        for(int i=1 ;i<=5 ;i++){
+            allReviewPage.toTabPrice();
+            allReviewPage.toRating(i+"");
+            temp = CSVReader.getReviewCount("Price" , i+"");
+            softA.assertEquals(temp , allReviewPage.getTableRow());
+        }
+        softA.assertAll();
+
+
+
+
+    }
+
+
     @Test(groups = "Reviews" ,priority = 2)
     public void searchTransactionWithID14() {
         SoftAssert  softA =  new SoftAssert();

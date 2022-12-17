@@ -16,6 +16,8 @@ import org.openqa.selenium.By;
 public class SejarahKita_PageBase extends PageBase {
 
     @AndroidFindBy(id = "gameFragment")
+    @AndroidFindBy(id = "com.uc.sejarahkita_mobile:id/gameFragment")
+    @AndroidFindBy(accessibility = "Game")
     public MobileElement fragGame;
 
     // for emulator
@@ -30,9 +32,11 @@ public class SejarahKita_PageBase extends PageBase {
     public MobileElement failedLoginToast;
 
     @AndroidFindBy(id = "profileFragment")
+    @AndroidFindBy(id = "com.uc.sejarahkita_mobile:id/profileFragment")
     public MobileElement fragProfile;
 
     @AndroidFindBy(id = "leaderboardFragment")
+    @AndroidFindBy(id = "com.uc.sejarahkita_mobile:id/leaderboardFragment")
     public MobileElement fragLeadeboard;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Bacaa plis\")")

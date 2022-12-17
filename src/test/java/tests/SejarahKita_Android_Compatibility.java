@@ -44,7 +44,7 @@ public class SejarahKita_Android_Compatibility extends TestBase{
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "7.1");
         capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("udid", "emulator-5554");
+        capabilities.setCapability("udid", "emulator-5556");
         capabilities.setCapability("app",sejarahKitaErrAppPath);
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
         Thread.sleep(5_000);
@@ -66,7 +66,7 @@ public class SejarahKita_Android_Compatibility extends TestBase{
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "7.1");
         capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("udid", "emulator-5556");
+        capabilities.setCapability("udid", "emulator-5554"); // pastiin start  yang  gaada playstore e sek
         capabilities.setCapability("app",sejarahKitaErrAppPath);
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
         Thread.sleep(10_000);

@@ -7,7 +7,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class MediaPage extends PageBase {
 
-    @AndroidFindBy(accessibility = "Tampilkan root")
+    @AndroidFindBy(accessibility = "Tampilkan akar")
     MobileElement leftMenuTray;
 
 //    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout")

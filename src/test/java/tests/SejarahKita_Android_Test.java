@@ -357,7 +357,6 @@ public class SejarahKita_Android_Test extends TestBase {
             FileUtils.copyFile(srcFile,targetFile);
         }
 //        driver.resetApp();
-
         driver.closeApp();
         driver.activateApp(sejarahKitaPackage);
 //        driver.launchApp();
@@ -755,6 +754,8 @@ public class SejarahKita_Android_Test extends TestBase {
         softAssert.assertAll();
 
     }
+
+    // nyalakan device rotate
     @Test(priority = 4 ,  dependsOnGroups = "login" , groups ="playGames")
     public void playCasualOnLandscape() throws IOException, ParseException {
         SoftAssert softAssert =  new SoftAssert();

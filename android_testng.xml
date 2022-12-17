@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="TUGAS AKHIR" parallel="false" >
+<suite name="TUGAS AKHIR DEMO" parallel="false" >
+    <test name ="Demo 1">
+        <classes>
+            <class name="tests.SejarahKita_RegisterLogin_Test">
+                <methods>
+                    <include name="registerThenLogin" />
+                </methods>
+            </class>
+
+
+        </classes>
+    </test>
+    <test name ="Demo 2">
+        <classes>
+            <class name="tests.WebViewApp_Test">
+                <methods>
+                    <include name="toWebviewAppEnvato" />
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+    <test name ="Demo 3">
+        <classes>
+            <class name="tests.WebviewTest_Hybridweb_Test">
+                <methods>
+                    <include name="showMataKuliahDetail" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
     <test name="Sejarah Kita instalation Test" enabled="false"   >
         <groups>
             <run>
@@ -42,10 +74,12 @@
             <class name="tests.SejarahKita_Performance_Test" enabled="false"/>
         </classes>
     </test>
-    <test name="Hibrid App Testing">
+    <test name="Hibrid App Testing" enabled="false">
         <classes>
             <class name="tests.WebViewApp_Test"/>
             <class name="tests.WebviewTest_Hybridweb_Test"/>
         </classes>
     </test>
+
+
 </suite>

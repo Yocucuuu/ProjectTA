@@ -54,6 +54,7 @@ public class RegisterPage extends SejarahKita_PageBase {
     }
     public void tapRegister(){
         click(registerButton);
+        System.out.println("tap register");
     }
 
 

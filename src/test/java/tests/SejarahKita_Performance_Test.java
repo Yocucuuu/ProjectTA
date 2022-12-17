@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class SejarahKita_Performance_Test extends TestBase {
 
     // testCase and mainkan pada beberapa sinyal
-
+    // nyalakan appium pakae --relaxed-security
     @BeforeTest
     public void beforeTest() throws IOException, InterruptedException {
 

@@ -18,11 +18,13 @@ public class scrapClass {
 
 
     public static Object[][] passData() throws IOException, ParseException {
+
         return JsonReader.getJSONdata(System.getProperty("user.dir") + "/data/kunciSejarahkita.json"
                         , "kunci", new String[]{"pertanyaan_kalimat", "kunci_jawaban"});
     }
 
     public static void main(String[] args) throws IOException, ParseException {
+
 
         ReviewisticTransaction trans = CSVReader.getTransactionByID("#2".substring(1));
         System.out.println(trans);

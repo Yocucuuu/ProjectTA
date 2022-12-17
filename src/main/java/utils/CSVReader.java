@@ -12,6 +12,7 @@ import java.util.List;
 public class CSVReader {
 
 
+
     public static List<ReviewisticTransaction> getReviewsticTransactionData(){
         List<ReviewisticTransaction> list = new ArrayList<>();
         //ReviewisticTransaction transaction = new ReviewisticTransaction()

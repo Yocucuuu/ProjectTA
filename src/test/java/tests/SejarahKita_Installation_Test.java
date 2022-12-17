@@ -41,7 +41,6 @@ public class SejarahKita_Installation_Test extends TestBase {
         resetLogin();
         boolean instaled = driver.isAppInstalled(sejarahKitaPackage);
         if(instaled){
-
             driver.removeApp(sejarahKitaPackage); // install ulang sejarah kita
         }
         System.out.println(driver.queryAppState(sejarahKitaPackage));
@@ -108,11 +107,11 @@ public class SejarahKita_Installation_Test extends TestBase {
 
     @Test(priority = 3)
     public void uninstallProgram() {
-//        boolean instaled = driver.isAppInstalled(sejarahKitaPackage);
-//        if(instaled){
-//            driver.removeApp(sejarahKitaPackage);
-//        }
-//        Assert.assertFalse(  driver.isAppInstalled(sejarahKitaPackage) );
+        boolean instaled = driver.isAppInstalled(sejarahKitaPackage);
+        if(instaled){
+            driver.removeApp(sejarahKitaPackage);
+        }
+        Assert.assertFalse(  driver.isAppInstalled(sejarahKitaPackage) );
     }
 
 

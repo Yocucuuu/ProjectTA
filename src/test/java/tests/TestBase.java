@@ -36,8 +36,9 @@ public class TestBase  {
     public static String sejarahKitaActivity = "com.uc.sejarahkita_mobile.view.MainActivity";
     public static String sejarahKitaAppPath = System.getProperty("user.dir")+"/apps/app-debug.apk";
     public static String sejarahKitaErrAppPath = System.getProperty("user.dir")+"/apps/app-debugERR.apk";
-    public static String chromeDriverPath = System.getProperty("user.dir")+"/apps/chromedriver106.exe";
+    public static String chromeDriverPath = System.getProperty("user.dir")+"/apps/chromedriver108.exe";
     public static String sejarahKitaCoveragePath = System.getProperty("user.dir")+"/apps/";
+    public static String webViewAppPackage= "com.robotemplates.webviewapp";
     public static String webViewTestPackage= "com.snc.test.webview2";
     public static String webViewTestActivity= "com.snc.test.webview.activity.MainActivity";
 
@@ -47,11 +48,11 @@ public class TestBase  {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "7.1");
         capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("deviceName", "emulator-5554");
+        capabilities.setCapability("deviceName", "emulator-5554"); // emulator android studio playstore
         capabilities.setCapability("appPackage","com.uc.sejarahkita_mobile");
         capabilities.setCapability("appActivity","com.uc.sejarahkita_mobile.view.MainActivity");
-        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
 //        capabilities.setCapability("app",sejarahKitaAppPath);
+        driver = new    AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
 //        autoGrantPermissions
 
         //driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS); // dipakai di pageOBJECT design pattern
@@ -77,7 +78,7 @@ public class TestBase  {
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("udid", "804a468e"); // udid Samsung C9
         capabilities.setCapability("autoGrantPermissions",true);
-//        capabilities.setCapability("fullReset",true);
+//        capabilities.setCapability("fastReset",true);
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         // untuk find element history
@@ -136,7 +137,7 @@ public class TestBase  {
         capabilities.setCapability("acceptInsecureCerts",true);
         capabilities.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
         capabilities.setCapability("appium:chromedriverExecutable",chromeDriverPath);
-        driver = new AppiumDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
 
     }
 
@@ -198,7 +199,16 @@ public class TestBase  {
         On Android this capability is currently ignored, though it remains required.*/
     }
 
-
+    public static function iOS_Iphone7_GymRecord_setup(){
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone");
+        capabilities.setCapability("automationName","XCUITest");
+        capabilities.setCapability("showXcodeLog",true);
+        capabilities.setCapability("udid","285d71b11b4217e1ff18108230450dc53680038e");
+        capabilities.setCapability("bundleId","com.macrosoft.reviewistic");
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
 
 
 
@@ -266,7 +276,7 @@ public class TestBase  {
 
         Dimension dimension = driver.manage().window().getSize();
         int scrollStart = (int) (dimension.getHeight() * 0.8);
-        int scrollEnd = (int) (dimension.getHeight()*0.2);
+        int scrollEnd = (int) (dimension.getHeight()*0.1);
         int center = (int) (dimension.getWidth()*0.5);
         AndroidTouchAction actions = new AndroidTouchAction(driver)
                 .press(PointOption.point(center, scrollStart))

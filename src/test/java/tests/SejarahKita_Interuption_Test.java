@@ -22,6 +22,7 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -49,7 +50,7 @@ public class SejarahKita_Interuption_Test extends TestBase {
     @BeforeTest(groups = "login")
     public  void beforeTest() throws IOException, InterruptedException {
         resetLogin();
-        Thread.sleep(10000);
+        Thread.sleep(5000);
         Android_SejarahKita_Emulator_setUp();
 
 
@@ -58,16 +59,17 @@ public class SejarahKita_Interuption_Test extends TestBase {
     public void beforeMethod() throws IOException, InterruptedException {
 
         resetLogin();
-        Thread.sleep( 10000);
-        driver.removeApp(sejarahKitaPackage);
-        driver.installApp(sejarahKitaAppPath);
-        driver.activateApp(sejarahKitaPackage);
+        Thread.sleep( 5000);
+//        driver.removeApp(sejarahKitaPackage);
+//        driver.installApp(sejarahKitaAppPath);
+//        driver.activateApp(sejarahKitaPackage);
 
         login = new LoginPage(driver);
         login.sendEmail("vanthony@student.ciputra.ac.id");
         login.sendPassword("va123456");
         login.tapLogin();
         login.waitForVisibility(login.fragGame);
+        Thread.sleep( 1000);
     }
 
     @AfterMethod // setiap kali ada error pada test akan membuat screenshot untuk mengetahui dimana letak erornya
@@ -83,6 +85,9 @@ public class SejarahKita_Interuption_Test extends TestBase {
             FileUtils.copyFile(srcFile,targetFile);
 
         }
+        driver.closeApp();
+        driver.activateApp(sejarahKitaPackage);
+        Thread.sleep(5_000);
 
 
 
@@ -120,7 +125,10 @@ public class SejarahKita_Interuption_Test extends TestBase {
         SoftAssert softAssert =  new SoftAssert();
         gameFragment = new GameFragment(driver);
         gameFragment.toGameFragment();
+        gameFragment.waitForVisibility(gameFragment.btnEasy);
+        scrollDown();
         gameFragment.tapCasualGame();// tap  on square area ,
+
         PlayingActivity playingActivity = new PlayingActivity(driver);
 
         int count = 0;
@@ -171,18 +179,20 @@ public class SejarahKita_Interuption_Test extends TestBase {
     }
 
     @Test(priority= 1,groups ={"playGames","withInteruption"}  )
-    public void playCasual_lowBattInterupt() throws IOException, ParseException {
+    public void playCasual_lowBattInterupt() throws IOException, ParseException     {
         SoftAssert softAssert = new SoftAssert();
+
+
+        gameFragment = new GameFragment(driver);
+        gameFragment.toGameFragment();
+        gameFragment.waitForVisibility(gameFragment.btnEasy);
+        scrollDown();
+        gameFragment.tapCasualGame();// tap  on square area ,
+        PlayingActivity playingActivity = new PlayingActivity(driver);
         int desiredBatteryCap = 15;
         ((AndroidDriver)driver).setPowerCapacity(desiredBatteryCap);
         ((AndroidDriver)driver).setPowerAC(PowerACState.OFF);
         int battery=Integer.parseInt(getBatteryCapasity());
-        softAssert.assertEquals(desiredBatteryCap , battery);
-
-        gameFragment = new GameFragment(driver);
-        gameFragment.toGameFragment();
-        gameFragment.tapCasualGame();// tap  on square area ,
-        PlayingActivity playingActivity = new PlayingActivity(driver);
 
         int count = 0;
         int wrongCount =0;
@@ -309,7 +319,7 @@ public class SejarahKita_Interuption_Test extends TestBase {
 
         gameFragment = new GameFragment(driver);
         gameFragment.toGameFragment();
-        gameFragment.waitForVisibility(gameFragment.fragGame);
+        gameFragment.waitForVisibility(gameFragment.btnEasy);
         scrollDown();
         gameFragment.tapCasualGame();// tap  on square area ,
         PlayingActivity playingActivity = new PlayingActivity(driver);
@@ -374,7 +384,7 @@ public class SejarahKita_Interuption_Test extends TestBase {
         SoftAssert softAssert = new SoftAssert();
         gameFragment = new GameFragment(driver);
         gameFragment.toGameFragment();
-        gameFragment.waitForVisibility(gameFragment.fragGame);
+        gameFragment.waitForVisibility(gameFragment.btnEasy);
         scrollDown();
         gameFragment.tapCasualGame();// tap  on square area ,
         PlayingActivity playingActivity = new PlayingActivity(driver);
@@ -414,6 +424,7 @@ public class SejarahKita_Interuption_Test extends TestBase {
 
 
         softAssert.assertAll();
+
     }
 
     public void testSMS() throws IOException, ParseException {

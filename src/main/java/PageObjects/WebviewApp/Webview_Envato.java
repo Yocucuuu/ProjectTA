@@ -45,7 +45,7 @@ public class Webview_Envato extends WebviewApp_Pagebase{
 //    @AndroidFindBy(accessibility = "Open account menu")
     public MobileElement btnProfile;
 
-//    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Cart\"])[2]/android.widget.Image/android.view.View")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Cart\"])[2]/android.widget.Image/android.view.View")
     @AndroidFindBy(uiAutomator= "new UiSelector().textContains(\"Cart\")")
     public MobileElement btnCart;
 
@@ -80,8 +80,10 @@ public class Webview_Envato extends WebviewApp_Pagebase{
     }
 
     public void clickBtnSignIn(){
-        closeAds();
+
         click(btnToSignIn);
+        closeAds();
+        System.out.println("click sign inn ");
     }
 
     public void fillUsername(String username){
@@ -94,13 +96,19 @@ public class Webview_Envato extends WebviewApp_Pagebase{
 
         click(btnLogin);
         closeAds();
+        System.out.println("click Submit");
     }
     public void openProfileTray(){
 
-        waitForVisibility(btnCart);
+//        waitForVisibility(btnCart);
 //        click(btnProfile);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 //         samsung c9
-        (new TouchAction(driver)).tap(PointOption.point(1018,255)).perform();
+        (new TouchAction(driver)).tap(PointOption.point(1015,252)).perform();
 
         // bluestack
 //        (new TouchAction(driver)).tap(PointOption.point(1041,154)).perform();

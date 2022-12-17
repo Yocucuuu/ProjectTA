@@ -4,6 +4,7 @@ import PageObjects.PageBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
@@ -17,9 +18,16 @@ public class WebviewApp_Pagebase extends PageBase {
         super(appiumDriver);
     }
 
-    @AndroidFindBy(accessibility = "Interstitial close button")
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View[2]/android.widget.TextView")
+//    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View[2]/android.widget.TextView")
+//    @AndroidFindBy(accessibility = "Interstitial close button")
+//    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/" +
+//            "android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View[2]/android.widget.Button")
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.Button\").clickable(true)")
     public MobileElement btn_closeAds;
+
+    @AndroidFindBy(accessibility = "Interstitial close button")
+    public MobileElement btn_closeAdsPic;
+
 
     @AndroidFindBy(id = "abgcp")
     public MobileElement addContainer;
@@ -66,24 +74,40 @@ public class WebviewApp_Pagebase extends PageBase {
 //        click(btn_closeAds);
 //    }
     public void closeAds(){
-        try{
-            MobileElement element = (MobileElement) new WebDriverWait(driver, 5)
-                    .until(ExpectedConditions.elementToBeClickable
-                    (
-                        By.id("abgcp")
-                    )
-                );
-            (new TouchAction(driver)).tap(PointOption.point(1005,65)).perform();
-//            driver.findElement( By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")).click();
-//            driver.findElement( By.xpath("//android.widget.ImageButton[@content-desc=\"Interstitial close button\"]")).click();
 
-        }catch (Exception ex){
-            System.out.println("There is no ads");
-        }
+        try{
+            ((AndroidDriver<?>) driver).findElementByAndroidUIAutomator(
+                    "new UiSelector().resourceId(\"adContainer\")");
+            click(btn_closeAds);
+            System.out.println("btn ads video");
+        }catch (Exception ex){}
+        try{
+            click(btn_closeAdsPic);
+            System.out.println("btn ads pic");
+        }catch (Exception ex){}
+
+//        try{
+//            click(btn_closeAdsPic);
+//            System.out.println("btn ads Pic");
+//        }catch (Exception ex){}
+
+//        try{
+////            MobileElement el2 = (MobileElement) driver.findElementByAccessibilityId("Advertisement");
+////            MobileElement el23 = (MobileElement) driver.findElementByXPath(
+////   "//android.view.View[@content-desc=\"Advertisement\"]/android.widget.Image");
+////            (new TouchAction(driver)).tap(PointOption.point(1005,57)).perform();  // C9
+////            Advertisement
+//            ((AndroidDriver<?>) driver).findElementByAndroidUIAutomator("new UiSelector().textContains(\"Advertisement\").instance(0)");
+////            driver.findElement(By.xpath("//android.view.View[@content-desc=\"Advertisement\"]"));
+//            (new TouchAction(driver)).tap(PointOption.point(850,35)).perform();
+//            System.out.println("Closed Ads");
+//        }catch (Exception ex){
+//            System.out.println(driver.getPageSource());
+//            System.out.println("There is no ads");
+//        }
     }
 
     public void toHome(){
-
         click(btn_drawer);
         click(btn_home);
         closeAds();

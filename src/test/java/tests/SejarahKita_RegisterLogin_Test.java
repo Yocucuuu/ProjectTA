@@ -93,11 +93,12 @@ public class SejarahKita_RegisterLogin_Test extends TestBase {
 
     @Test(groups = "loginFail")
     public void emptyField() throws IOException {
-
+        login = new LoginPage(driver);
         login.clear(login.tvEmail);
         login.clear(login.tvPass);
         login.tapLogin();
-        Assert.assertEquals("Please fill all field" , login.getToastText(login.toastMessage));
+        Assert.assertEquals("Please fill all field" ,
+                login.getToastText(login.toastMessage));
     }
     @Test(groups = "loginFail")
     public void emptyPassField() {
@@ -153,20 +154,21 @@ public class SejarahKita_RegisterLogin_Test extends TestBase {
         Assert.assertEquals("Login Failed" , login.getToastText(login.toastMessage));
     }
 
-    @Test(priority = 1 ,groups = "registerFail")
-    public void registerWithblank(){
-        LoginPage login =  new LoginPage(driver);
-        login.toRegisterPage();
+//    @Test(priority = 1 ,groups = "registerFail")
+//    public void registerWithblank(){
+//        LoginPage login =  new LoginPage(driver);
+//        login.toRegisterPage();
+//
+//        RegisterPage register = new RegisterPage(driver);
+//        register.waitForVisibility(register.tvEmail);
+//        scrollDown();
+//        register.tapRegister();
+//        Assert.assertEquals(register.getToastText(register.toastMessage) , "Please fill all field");
+//    }
 
-        RegisterPage register = new RegisterPage(driver);
-        register.waitForVisibility(register.tvEmail);
-        scrollDown();
-        register.tapRegister();
-        Assert.assertEquals(register.getToastText(register.toastMessage) , "Please fill all field");
-    }
 
-
-    @Test(priority = 1 ,groups = "registerSuccess",dependsOnGroups = "registerFail")
+//    @Test(priority = 1 ,groups = "registerSuccess",dependsOnGroups = "registerFail")
+    @Test(priority = 1 ,groups = "registerSuccess")
     public void registerThenLogin(){
 
         SoftAssert softAssert = new SoftAssert();
@@ -209,7 +211,7 @@ public class SejarahKita_RegisterLogin_Test extends TestBase {
     @Test(priority = 2 ,groups = "login")
     public void successLogin() throws IOException, InterruptedException {
         SoftAssert softAssert = new SoftAssert();
-        String str = "https://sejarahkita.my.id/";
+        String str = "vanthony@student.ciputra.ac.id";
         byte[] base64 = Base64.encodeBase64(str.getBytes(StandardCharsets.UTF_8));
         ((AndroidDriver)driver).setClipboard("lable",ClipboardContentType.PLAINTEXT , base64 );
         String emailFromClipboard = ((AndroidDriver)driver).getClipboard(ClipboardContentType.PLAINTEXT );

@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends SejarahKita_PageBase {
 
-    @AndroidFindBy(id = "btn_login")
+    @AndroidFindBy(id = "com.uc.sejarahkita_mobile:id/btn_login")
     public MobileElement loginButton ;
 
     @AndroidFindBy(id = "buttonReg")
