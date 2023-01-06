@@ -44,18 +44,6 @@ public class Reviestic_iOS_Test extends TestBase {
         driver.quit();
     }
 
-    @Test
-    public void demo() {
-        ((IOSDriver)driver).shake();
-        ((IOSDriver)driver).hideKeyboard();
-        ((IOSDriver)driver).isKeyboardShown();
-        ((IOSDriver)driver).lockDevice();
-        ((IOSDriver)driver).lockDevice();
-//        ((IOSDriver)driver).execute("","");
-
-
-    }
-
     @Test(groups = "Reviews" , priority = 0)
     public void countReviewsEachTab() {
         int temp =0;

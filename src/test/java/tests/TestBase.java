@@ -39,6 +39,7 @@ public class TestBase  {
     public static String chromeDriverPath = System.getProperty("user.dir")+"/apps/chromedriver108.exe";
     public static String sejarahKitaCoveragePath = System.getProperty("user.dir")+"/apps/";
     public static String webViewAppPackage= "com.robotemplates.webviewapp";
+    public static String GymRecordBundleId= "com.snc.test.webview.activity.MainActivity";
     public static String webViewTestPackage= "com.snc.test.webview2";
     public static String webViewTestActivity= "com.snc.test.webview.activity.MainActivity";
 
@@ -199,14 +200,48 @@ public class TestBase  {
         On Android this capability is currently ignored, though it remains required.*/
     }
 
-    public static function iOS_Iphone7_GymRecord_setup(){
+    public void iOS_Iphone7_MoneyTracker() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone");
         capabilities.setCapability("automationName","XCUITest");
         capabilities.setCapability("showXcodeLog",true);
         capabilities.setCapability("udid","285d71b11b4217e1ff18108230450dc53680038e");
-        capabilities.setCapability("bundleId","com.macrosoft.reviewistic");
+        capabilities.setCapability("bundleId","com.zotiger.accountbook");
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+//        capabilities.setCapability("xcodeOrgId","com.macrosoft.reviewistic");
+//        capabilities.setCapability("xcodeSigningId","com.macrosoft.reviewistic");
+
+       /* iPhone Simulator, iPad Simulator, iPhone Retina 4-inch, Android Emulator, Galaxy S4, etc....
+        On iOS, this should be one of the valid devices returned
+            by instruments with instruments -s devices or xctrace with xcrun xctrace list devices (since Xcode 12).
+        On Android this capability is currently ignored, though it remains required.*/
+    }
+
+    public void iOS_Iphone7_GymWorkout() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone");
+        capabilities.setCapability("automationName","XCUITest");
+        capabilities.setCapability("showXcodeLog",true);
+        capabilities.setCapability("udid","285d71b11b4217e1ff18108230450dc53680038e");
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+//        capabilities.setCapability("xcodeOrgId","com.macrosoft.reviewistic");
+//        capabilities.setCapability("xcodeSigningId","com.macrosoft.reviewistic");
+
+       /* iPhone Simulator, iPad Simulator, iPhone Retina 4-inch, Android Emulator, Galaxy S4, etc....
+        On iOS, this should be one of the valid devices returned
+            by instruments with instruments -s devices or xctrace with xcrun xctrace list devices (since Xcode 12).
+        On Android this capability is currently ignored, though it remains required.*/
+    }
+    public static void  iOS_Iphone7_GymRecord_setup() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone");
+        capabilities.setCapability("automationName","XCUITest");
+        capabilities.setCapability("showXcodeLog",true);
+        capabilities.setCapability("udid","285d71b11b4217e1ff18108230450dc53680038e");
+
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
     }
 

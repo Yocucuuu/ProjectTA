@@ -60,9 +60,6 @@ public class PageBase {
     }
     public void click(MobileElement element) {
         waitForVisibility(element);
-        evt.setVendor(driver.getAutomationName());
-        evt.setEventName("Click element" + element.getTagName());
-        driver.logEvent(evt);
         element.click();
 //        AndroidTouchAction actions = new AndroidTouchAction(driver);
 //        actions.tap(PointOption.point(element.getLocation())).perform();
