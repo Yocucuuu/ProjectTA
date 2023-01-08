@@ -3,6 +3,7 @@ package tests;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.ios.IOSDriver;
@@ -49,18 +50,18 @@ public class TestBase  {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "7.1");
         capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("deviceName", "emulator-5554"); // emulator android studio playstore
+        capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability("appPackage","com.uc.sejarahkita_mobile");
         capabilities.setCapability("appActivity","com.uc.sejarahkita_mobile.view.MainActivity");
-//        capabilities.setCapability("app",sejarahKitaAppPath);
         driver = new    AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+    }
 //        autoGrantPermissions
 
+//        capabilities.setCapability("app",sejarahKitaAppPath);
         //driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS); // dipakai di pageOBJECT design pattern
 //        driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
 
 
-    }
 
     // Just open Bluestack and set Driver
     public static void Android_Emulator_setUp() throws MalformedURLException {
@@ -149,17 +150,17 @@ public class TestBase  {
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("autoGrantPermissions",true);
         capabilities.setCapability("udid", "804a468e");
-        capabilities.setCapability("appPackage","com.robotemplates.webviewapp");
-        capabilities.setCapability("appActivity","com.robotemplates.webviewapp.activity.MainActivity");;
+//        capabilities.setCapability("appPackage","com.robotemplates.webviewapp");
+//        capabilities.setCapability("appActivity","com.robotemplates.webviewapp.activity.MainActivity");;
         capabilities.setCapability("acceptInsecureCerts",true);
         capabilities.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
         capabilities.setCapability("appium:chromedriverExecutable",chromeDriverPath);
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
+        ((AndroidDriver)driver).startActivity(new Activity("com.robotemplates.webviewapp",
+                "com.robotemplates.webviewapp.activity.MainActivity"));
 
 
 //        capabilities.setCapability("deviceName", "emulator-5554");
-//        ((AndroidDriver)driver).startActivity(new Activity("com.robotemplates.webviewapp",
-//                "com.robotemplates.webviewapp.activity.MainActivity"));
 
 //        capabilities.setCapability("appPackage","com.robotemplates.webviewapp")c;
 //        capabilities.setCapability("appActivity","com.robotemplates.webviewapp.activity.MainActivity");
@@ -200,7 +201,11 @@ public class TestBase  {
         On Android this capability is currently ignored, though it remains required.*/
     }
 
+<<<<<<< Updated upstream
     public void iOS_Iphone7_MoneyTracker() throws MalformedURLException {
+=======
+    public static void iOS_Iphone7_GymRecord_setup() throws MalformedURLException {
+>>>>>>> Stashed changes
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone");
@@ -429,8 +434,8 @@ public class TestBase  {
 
         myWriter.write("======Server Log ===== \n");
         driver.manage().logs().getAvailableLogTypes();
-//        LogEntries serverLog = driver.manage().logs().get("server");
-//        LogEntries bugreport = driver.manage().logs().get("bugreport");
+        LogEntries serverLog = driver.manage().logs().get("server");
+        LogEntries bugreport = driver.manage().logs().get("bugreport");
 
 
 //        myWriter.write(serverLog.toString() + "\n");

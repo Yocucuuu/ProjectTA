@@ -4,6 +4,7 @@ package tests;
 import PageObjects.SejarahKita.LoginPage;
 import PageObjects.SejarahKita.ProfileFragment;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -79,6 +80,10 @@ public class SejarahKita_Installation_Test extends TestBase {
 
         SoftAssert softAssert = new SoftAssert();
         driver.activateApp(sejarahKitaPackage);
+        ((AndroidDriver)driver).startActivity(new Activity(sejarahKitaPackage,
+                sejarahKitaActivity+".MainActivity"));
+        String currentActivity= ((AndroidDriver) driver).currentActivity();
+        softAssert.assertEquals("sejarahKitaActivity.MainActivity",currentActivity);
         LoginPage login = new LoginPage(driver);
         login.waitForVisibility(login.tvEmail);
         softAssert.assertTrue(login.tvEmail.isDisplayed());
@@ -115,49 +120,49 @@ public class SejarahKita_Installation_Test extends TestBase {
     }
 
 
-    public void TerminateApp() {
-        LoginPage login = new LoginPage(driver);
-        login.waitForVisibility(login.tvEmail);
-        driver.terminateApp(sejarahKitaPackage); // nutup aplikasi
-        Assert.assertEquals("NOT_RUNNING",driver.queryAppState(sejarahKitaPackage).toString());
-    }
-
-
-    public void close() {
-        driver.activateApp(sejarahKitaPackage);
-        LoginPage login = new LoginPage(driver);
-        login.waitForVisibility(login.tvEmail);
-        driver.closeApp();
-        System.out.println(driver.queryAppState(sejarahKitaPackage).toString());
-    }
-
-
-    public void resetApp() {
-        driver.activateApp(sejarahKitaPackage);
-        ((AndroidDriver)driver).resetApp();
-
-    }
-
-
-    public void terminateApp() {
-        driver.activateApp(sejarahKitaPackage);
-        driver.terminateApp(sejarahKitaPackage);
-        System.out.println("Terminate : "+driver.queryAppState(sejarahKitaPackage));
-    }
-
-
-    public void runTobackgroun() {
-        driver.activateApp(sejarahKitaPackage);
-        driver.runAppInBackground(Duration.ofSeconds(10));
-        System.out.println("Background : "+driver.queryAppState(sejarahKitaPackage));
-    }
-
-
-
-    public void endTestCoverage() {
-        ((AndroidDriver)driver).endTestCoverage("Intent",sejarahKitaCoveragePath);
-        ((AndroidDriver)driver).getBatteryInfo();
-    }
+//    public void TerminateApp() {
+//        LoginPage login = new LoginPage(driver);
+//        login.waitForVisibility(login.tvEmail);
+//        driver.terminateApp(sejarahKitaPackage); // nutup aplikasi
+//        Assert.assertEquals("NOT_RUNNING",driver.queryAppState(sejarahKitaPackage).toString());
+//    }
+//
+//
+//    public void close() {
+//        driver.activateApp(sejarahKitaPackage);
+//        LoginPage login = new LoginPage(driver);
+//        login.waitForVisibility(login.tvEmail);
+//        driver.closeApp();
+//        System.out.println(driver.queryAppState(sejarahKitaPackage).toString());
+//    }
+//
+//
+//    public void resetApp() {
+//        driver.activateApp(sejarahKitaPackage);
+//        ((AndroidDriver)driver).resetApp();
+//
+//    }
+//
+//
+//    public void terminateApp() {
+//        driver.activateApp(sejarahKitaPackage);
+//        driver.terminateApp(sejarahKitaPackage);
+//        System.out.println("Terminate : "+driver.queryAppState(sejarahKitaPackage));
+//    }
+//
+//
+//    public void runTobackgroun() {
+//        driver.activateApp(sejarahKitaPackage);
+//        driver.runAppInBackground(Duration.ofSeconds(10));
+//        System.out.println("Background : "+driver.queryAppState(sejarahKitaPackage));
+//    }
+//
+//
+//
+//    public void endTestCoverage() {
+//        ((AndroidDriver)driver).endTestCoverage("Intent",sejarahKitaCoveragePath);
+//        ((AndroidDriver)driver).getBatteryInfo();
+//    }
 
 
 

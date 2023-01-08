@@ -106,9 +106,13 @@ public class WebviewTest_Hybridweb_Test extends TestBase{
 //        }
 
         //logout
-        driver.executeScript(" window.location.href = \"https://eclass.stts.edu/logout\"; ");
+        driver.executeScript("" +
+                "window.location.href = \"https://eclass.stts.edu/logout\";" +
+                " ");
         softAssert.assertAll();
         ((AndroidDriver) driver).longPressKey(new KeyEvent(AndroidKey.BACK)); // close
+
+
     }
 
     @Test
